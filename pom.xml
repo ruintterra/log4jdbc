@@ -9,6 +9,7 @@
     </parent>
 
     <artifactId>log4jdbc-log4j2-jdbc4-ot</artifactId>
+    <version>1.16.2</version>
     <packaging>jar</packaging>
     <name>log4jdbc-log4j2-jdbc4</name>
 

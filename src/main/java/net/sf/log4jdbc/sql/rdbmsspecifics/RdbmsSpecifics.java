@@ -17,6 +17,7 @@ package net.sf.log4jdbc.sql.rdbmsspecifics;
 
 import java.util.Date;
 import java.text.SimpleDateFormat;
+import java.util.UUID;
 
 import net.sf.log4jdbc.Properties;
 
@@ -67,6 +68,9 @@ public class RdbmsSpecifics
 			return Properties.isDumpBooleanAsTrueFalse()?
 					((Boolean)object).booleanValue()?"true":"false"
 						:((Boolean)object).booleanValue()?"1":"0";
+		}
+		else if (object instanceof UUID){
+			return "'" + object.toString() + "'::uuid";
 		}
 		else
 		{

@@ -234,7 +234,7 @@ public final class Properties
 		SqlTimingErrorThresholdMsec = SqlTimingErrorThresholdMsecTemp;
 
 		DumpBooleanAsTrueFalse =
-				getBooleanOption(props, "log4jdbc.dump.booleanastruefalse",false);
+				getBooleanOption(props, "log4jdbc.dump.booleanastruefalse",true);
 
 		DumpSqlMaxLineLength = getLongOption(props,
 				"log4jdbc.dump.sql.maxlinelength", 90L).intValue();

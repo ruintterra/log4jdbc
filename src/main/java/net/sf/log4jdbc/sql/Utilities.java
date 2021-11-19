@@ -49,12 +49,18 @@ public class Utilities {
   }
 
   public static Span startSpan(String operationName, String sql){
-    return GlobalTracer.get().buildSpan(QueryMethodTableSpanName.INSTANCE.querySpanName(sql))
+     Span span = GlobalTracer.get().buildSpan(QueryMethodTableSpanName.INSTANCE.querySpanName(sql))
             .withTag(Tags.COMPONENT, "java-jdbc")
             .withTag(Tags.SPAN_KIND, Tags.SPAN_KIND_CLIENT)
             .withTag(Tags.DB_TYPE, "sql")
-            .withTag(Tags.DB_STATEMENT, sql)
             .start();
+
+     if (sql.length() < 50000){
+       span.setTag(Tags.DB_STATEMENT, sql);
+     }else {
+       span.setTag(Tags.DB_STATEMENT, sql.substring(0, 50000));
+     }
+     return span;
   }
 
   public static void finishSpan(Span span, Exception e){
